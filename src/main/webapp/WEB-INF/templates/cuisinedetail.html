@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Spring Thyme Seed Starter Manager</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<div id="cuisines">
+    <div class="cuisine" th:object="${cuisine}">
+        <img th:src="@{${cuisine.imgurl}}" alt="">
+        <span class="name" th:text="${cuisine.name}"></span>
+        <span class="description" th:text="${cuisine.description}"></span>
+        <span class="price" th:text="${'price:' + cuisine.price}"></span>
+        <hr/>
+    </div>
+</div>
+</body>

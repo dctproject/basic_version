@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Spring Thyme Seed Starter Manager</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<form action="#" th:object="${order}" method="post" >
+    <div id="cuisines" th:each="cuisine : ${allCuisines}" >
+        <div class="cuisine" th:unless="${order.hasOrdered(cuisine)}">
+            <img th:src="@{${cuisine.imgurl}}" alt="">
+            <span class="name" th:text="${cuisine.name}"></span>
+            <span class="description" th:text="${cuisine.description}"></span>
+            <span class="price" th:text="${'price:' + cuisine.price}"></span>
+            <button type="submit" name="select-cuisine" th:value="${cuisine.name}">order this</button>
+            <hr/>
+        </div>
+    </div>
+    <div class="menu">
+        <div class="cuisines" th:each="cuisine, cuisineStat : *{list}">
+            <input class="name" type="text" th:field="*{list[__${cuisineStat.index}__].name}"></input>
+            <input type="number" th:field="*{list[__${cuisineStat.index}__].amount}" th:errorclass="fieldError" />
+            <button type="submit" name="remove-cuisine" th:value="${cuisineStat.index}">remove</button>
+        </div>
+        <button type="submit" name="save">submit</button>
+    </div>
+</form>
+
+</body>

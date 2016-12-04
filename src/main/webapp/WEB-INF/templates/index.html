@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Spring Thyme Seed Starter Manager</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<form action="#" th:action="@{/index}" th:object="${cuisineRecommend}" method="post">
+    <div>
+        <label for="area">Slect a area</label>
+        <select th:field="*{area}">
+            <option th:each="area : ${allArea}" th:value="${area}" th:text="${area}">Wireframe</option>
+        </select>
+    </div>
+    <div class="submit">
+        <button type="submit" name="select">select</button>
+    </div>
+</form>
+<div id="cuisines">
+    <div class="cuisine" th:each="cuisine : ${cuisineRecommend.cuisines}">
+        <img th:src="@{cuisine.imgurl}" alt="">
+        <a th:href="@{${'/cuisine_detail/' + cuisine.name}}"><span class="name" th:text="${cuisine.name}"></span></a>
+        <span class="description" th:text="${cuisine.description}"></span>
+        <span class="price" th:text="${cuisine.price}"></span>
+
+        <hr/>
+    </div>
+</div>
+<a th:href="@{'/menu'}">去点菜</a>
+</body>
